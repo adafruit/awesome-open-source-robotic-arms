@@ -1,5 +1,3 @@
-# awesome-open-source-robots
-
 <h1 align="center">
   <a href="https://adafruit.com">
   <img width="600" src="https://github.com/adafruit/awesome-open-source-robots/blob/master/awesome.png" alt="Awesome Open Source Robots"></a><br>Awesome Open Source Robots
