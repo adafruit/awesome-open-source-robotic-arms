@@ -7,7 +7,7 @@
 
 > A curated list of awesome open source robots worldwide.
 
-[Adafruit IO is the easiest way to connect your project to the internet](https://io.adafruit.com). You can easily connect your project to Adafruit IO with your device-of-choice by using your programming language of choice (we have _lots_ of libraries) and control or monitor over the internet. Data stored with Adafruit IO is _yours_ to manage and control. You can download it all anytime and we will never sell or give it away to another company. It's great for getting started with the internet of things!
+This is a list of open source robots located worldwide. 
 
 
 ## Contents
