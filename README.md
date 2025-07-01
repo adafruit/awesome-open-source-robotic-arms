@@ -1,6 +1,6 @@
 <h1 align="center">
   <a href="https://adafruit.com">
-  <img width="600" src="https://github.com/adafruit/awesome-open-source-robots/blob/master/awesome.png" alt="Awesome Open Source Robots"></a><br>Awesome Open Source Robots
+  <img width="600" src="https://github.com/adafruit/awesome-open-source-robots/blob/master/awesome.png" alt="Awesome Open Source Robot Arms"></a><br>Awesome Open Source Robot Arms
 </h1>
 
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
