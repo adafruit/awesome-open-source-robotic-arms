@@ -9,9 +9,9 @@ This is a list of open source robot arms located worldwide.
 
 ## Contents
 
+- [Hardware](#hardware)
 - [Guides](#guides)
 - [Community](#community)
-- [Hardware](#hardware)
 - [News](#news)
 - [Social](#social)
 - [Events](#events)
