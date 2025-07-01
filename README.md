@@ -1,6 +1,6 @@
-<div style="width: 600px; height: 200px; background-color: lightblue; text-align: center; line-height: 200px; font-size: 40px; font-weight: bold;">
+<p style="width: 600px; height: 200px; background-color: lightblue; text-align: center; line-height: 200px; font-size: 40px; font-weight: bold;">
     Open Source Robotic Arms
-</div>
+</p>
 
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
 
