@@ -5,9 +5,9 @@
 
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
 
-> A curated list of awesome open source robots worldwide.
+> A curated list of awesome open source robot arms worldwide.
 
-This is a list of open source robots located worldwide. 
+This is a list of open source robot arms located worldwide. 
 
 
 ## Contents
