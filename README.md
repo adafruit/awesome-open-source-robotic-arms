@@ -18,7 +18,11 @@ This is a list of open source robot arms located worldwide.
 
 ## Hardware
 
-* [Pedro 2.0 Robot](https://www.hackster.io/almtzr/pedro-robot-a-fully-open-source-robotic-arm-for-hands-eeb7dd) - a compact, 3D‑printable, open‑source robotic arm designed to democratize robotics education
+Ordered by most recent first
+
+* [OpenExo](https://www.hackster.io/news/openexo-opens-the-door-to-diy-exoskeletons-889b14cce40d), an open-source modular exoskeleton to augment human function, 6/25/2025, [paper](https://www.science.org/doi/10.1126/scirobotics.adt1591), [GitHub](https://github.com/naubiomech/OpenExo)
+* [Pedro 2.0 Robot](https://www.hackster.io/almtzr/pedro-robot-a-fully-open-source-robotic-arm-for-hands-eeb7dd) - a compact, 3D‑printable, open‑source robotic arm designed to democratize robotics education. 6/13/2025, [GitHub](https://github.com/almtzr/Pedro), [OSHW FR000025](https://certification.oshwa.org/fr000025.html)
+* [Reachy 2](https://www.infoq.com/news/2025/05/huggingface-reachy-robot/) - a friendly, open-source humanoid robot designed for intuitive human-robot interaction. It features expressive movement through its Orbita joint system and 7-DoF arms, can manipulate objects up to 3 kg, and navigates using omniwheels and LiDAR, 5/10/2025, [blog](https://huggingface.co/blog/hugging-face-pollen-robotics-acquisition#about-reachy-2), [YouTube](https://www.youtube.com/watch?v=Er8SPJsIYr0), [GitHub](https://github.com/pollen-robotics/reachy2-sdk)
 
 ## Guides
 
