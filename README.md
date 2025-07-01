@@ -1,7 +1,6 @@
-<h1 align="center">
-  <a href="https://adafruit.com">
-  <img width="600" src="https://github.com/adafruit/awesome-open-source-robots/blob/master/awesome.png" alt="Awesome Open Source Robot Arms"></a><br>Awesome Open Source Robot Arms
-</h1>
+<div style="width: 600px; height: 200px; background-color: lightblue; text-align: center; line-height: 200px; font-size: 40px; font-weight: bold;">
+    Open Source Robotic Arms
+</div>
 
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
 
