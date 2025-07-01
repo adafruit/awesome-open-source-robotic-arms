@@ -11,26 +11,18 @@ This is a list of open source robot arms located worldwide.
 
 - [Guides](#guides)
 - [Community](#community)
-- [Code](#code)
 - [Hardware](#hardware)
 - [News](#news)
 - [Social](#social)
 - [Events](#events)
 
-## Guides
-
-
-## Community
-
-
-
-## Code
-
-
 ## Hardware
 
+* [Pedro 2.0 Robot](https://www.hackster.io/almtzr/pedro-robot-a-fully-open-source-robotic-arm-for-hands-eeb7dd) - a compact, 3D‑printable, open‑source robotic arm designed to democratize robotics education
 
+## Guides
 
+## Community
 
 
 ## News
