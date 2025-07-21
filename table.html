@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Awesome Open Source Robots - Visual Organization</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #2c3e50;
+            font-size: 2.5rem;
+        }
+        
+        .view-toggle {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .toggle-btn {
+            padding: 10px 20px;
+            border: 2px solid #3498db;
+            background: white;
+            color: #3498db;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .toggle-btn.active {
+            background: #3498db;
+            color: white;
+        }
+        
+        .toggle-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+        }
+        
+        /* Table View Styles */
+        .table-view {
+            display: none;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .table-view.active {
+            display: block;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 12px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+        
+        tr:hover {
+            background: #f8f9ff;
+        }
+        
+        .robot-name {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 16px;
+        }
+        
+        .robot-type {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .type-wheeled { background: #e8f5e8; color: #27ae60; }
+        .type-humanoid { background: #fff3e0; color: #f39c12; }
+        .type-quadruped { background: #f3e5f5; color: #9b59b6; }
+        .type-flying { background: #e3f2fd; color: #3498db; }
+        .type-arm { background: #ffebee; color: #e74c3c; }
+        .type-industrial { background: #ffebee; color: #e74c3c; }
+        .type-educational { background: #e8f5e8; color: #27ae60; }
+        .type-exoskeleton { background: #f3e5f5; color: #9b59b6; }
+        .type-scara { background: #e3f2fd; color: #3498db; }
+        
+        .difficulty {
+            display: flex;
+            gap: 2px;
+        }
+        
+        .star {
+            color: #f39c12;
+            font-size: 16px;
+        }
+        
+        .star.empty {
+            color: #ddd;
+        }
+        
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+        
+        .feature-tag {
+            background: #ecf0f1;
+            color: #34495e;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+        }
+        
+        .links {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .link-btn {
+            padding: 4px 8px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        
+        .link-github {
+            background: #333;
+            color: white;
+        }
+        
+        .link-demo {
+            background: #27ae60;
+            color: white;
+        }
+        
+        .link-docs {
+            background: #3498db;
+            color: white;
+        }
+        
+        .link-btn:hover {
+            transform: translateY(-1px);
+            opacity: 0.9;
+        }
+        
+        /* Gallery View Styles */
+        .gallery-view {
+            display: none;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+        }
+        
+        .gallery-view.active {
+            display: grid;
+        }
+        
+        .robot-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .robot-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+        
+        .card-image {
+            height: 160px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            position: relative;
+        }
+        
+        .card-type-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            color: white;
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .card-content {
+            padding: 20px;
+        }
+        
+        .card-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+        
+        .card-subtitle {
+            color: #7f8c8d;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+        
+        .card-description {
+            color: #34495e;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+        
+        .card-specs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        
+        .spec {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .spec-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: #95a5a6;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .spec-value {
+            font-size: 13px;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+        
+        .cost-badge {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .cost-low { background: #d5f4e6; color: #27ae60; }
+        .cost-medium { background: #fff3cd; color: #f39c12; }
+        .cost-high { background: #f8d7da; color: #e74c3c; }
+        
+        .card-footer {
+            border-top: 1px solid #ecf0f1;
+            padding-top: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        @media (max-width: 768px) {
+            .view-toggle {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            th, td {
+                padding: 8px 6px;
+                font-size: 12px;
+            }
+            
+            .robot-name {
+                font-size: 14px;
+            }
+            
+            .gallery-view {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🦾 Awesome Open Source Robotic Arms</h1>
+        
+        <div class="view-toggle">
+            <button class="toggle-btn active" onclick="showView('table')">📊 Table View</button>
+            <button class="toggle-btn" onclick="showView('gallery')">🎴 Gallery View</button>
+        </div>
+        
+        <!-- Table View -->
+        <div class="table-view active" id="table-view">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Robotic Arm</th>
+                        <th>Type</th>
+                        <th>Language</th>
+                        <th>Difficulty</th>
+                        <th>Cost</th>
+                        <th>Features</th>
+                        <th>Links</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="robot-name">Annin Robotics AR4-MK3</td>
+                        <td><span class="robot-type type-industrial">Industrial Arm</span></td>
+                        <td>Python, C++</td>
+                        <td class="difficulty">
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                        </td>
+                        <td>$2,000-4,000</td>
+                        <td class="features">
+                            <span class="feature-tag">6DOF</span>
+                            <span class="feature-tag">Desktop Size</span>
+                            <span class="feature-tag">Industrial</span>
+                        </td>
+                        <td class="links">
+                            <a href="https://www.anninrobotics.com/" class="link-btn link-docs">Website</a>
+                            <a href="https://www.anninrobotics.com/downloads" class="link-btn link-demo">Software</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="robot-name">Arctos Robot Arm</td>
+                        <td><span class="robot-type type-educational">Learning Arm</span></td>
+                        <td>Arduino, C++</td>
+                        <td class="difficulty">
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star empty">★</span>
+                        </td>
+                        <td>$500-1,500</td>
+                        <td class="features">
+                            <span class="feature-tag">Open/Closed Loop</span>
+                            <span class="feature-tag">Educational</span>
+                            <span class="feature-tag">Two Versions</span>
+                        </td>
+                        <td class="links">
+                            <a href="https://arctosrobotics.com/" class="link-btn link-docs">Website</a>
+                            <a href="https://www.youtube.com/watch?v=8DtwWGTlogU" class="link-btn link-demo">YouTube</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="robot-name">OpenExo</td>
+                        <td><span class="robot-type type-exoskeleton">Exoskeleton</span></td>
+                        <td>Python, C++</td>
+                        <td class="difficulty">
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                        </td>
+                        <td>$1,000-3,000</td>
+                        <td class="features">
+                            <span class="feature-tag">Modular</span>
+                            <span class="feature-tag">Human Augmentation</span>
+                            <span class="feature-tag">Research</span>
+                        </td>
+                        <td class="links">
+                            <a href="https://github.com/naubiomech/OpenExo" class="link-btn link-github">GitHub</a>
+                            <a href="https://www.science.org/doi/10.1126/scirobotics.adt1591" class="link-btn link-docs">Paper</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="robot-name">Pedro 2.0 Robot</td>
+                        <td><span class="robot-type type-educational">Educational Arm</span></td>
+                        <td>Arduino, C++</td>
+                        <td class="difficulty">
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star empty">★</span>
+                        </td>
+                        <td>$200-500</td>
+                        <td class="features">
+                            <span class="feature-tag">3D Printable</span>
+                            <span class="feature-tag">Compact</span>
+                            <span class="feature-tag">Educational</span>
+                        </td>
+                        <td class="links">
+                            <a href="https://github.com/almtzr/Pedro" class="link-btn link-github">GitHub</a>
+                            <a href="https://www.hackster.io/almtzr/pedro-robot-a-fully-open-source-robotic-arm-for-hands-eeb7dd" class="link-btn link-demo">Hackster</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="robot-name">Reachy 2</td>
+                        <td><span class="robot-type type-humanoid">Humanoid</span></td>
+                        <td>Python</td>
+                        <td class="difficulty">
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                        </td>
+                        <td>$15,000+</td>
+                        <td class="features">
+                            <span class="feature-tag">7-DoF Arms</span>
+                            <span class="feature-tag">3kg Payload</span>
+                            <span class="feature-tag">LiDAR Navigation</span>
+                        </td>
+                        <td class="links">
+                            <a href="https://github.com/pollen-robotics/reachy2-sdk" class="link-btn link-github">GitHub</a>
+                            <a href="https://www.youtube.com/watch?v=Er8SPJsIYr0" class="link-btn link-demo">YouTube</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="robot-name">SCARA Robot</td>
+                        <td><span class="robot-type type-scara">SCARA Arm</span></td>
+                        <td>Arduino, Processing</td>
+                        <td class="difficulty">
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star empty">★</span>
+                        </td>
+                        <td>$300-800</td>
+                        <td class="features">
+                            <span class="feature-tag">SCARA Design</span>
+                            <span class="feature-tag">Arduino Based</span>
+                            <span class="feature-tag">DIY Friendly</span>
+                        </td>
+                        <td class="links">
+                            <a href="https://howtomechatronics.com/projects/scara-robot-how-to-build-your-own-arduino-based-robot/" class="link-btn link-docs">Guide</a>
+                            <a href="https://youtu.be/1QHJksTrk8s?feature=shared" class="link-btn link-demo">YouTube</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Gallery View -->
+        <div class="gallery-view" id="gallery-view">
+            <div class="robot-card">
+                <div class="card-image" style="background: linear-gradient(135deg, #e74c3c, #c0392b);">
+                    🦾
+                    <div class="card-type-badge">Industrial Arm</div>
+                </div>
+                <div class="card-content">
+                    <div class="card-title">Annin Robotics AR4-MK3</div>
+                    <div class="card-subtitle">6DOF Desktop Industrial Arm</div>
+                    <div class="card-description">
+                        A free, open plan low-cost robot designed for educational, research, and 
+                        personal non-commercial use. Desktop-sized industrial robot arm.
+                    </div>
+                    <div class="card-specs">
+                        <div class="spec">
+                            <span class="spec-label">Language</span>
+                            <span class="spec-value">Python, C++</span>
+                        </div>
+                        <div class="spec">
+                            <span class="spec-label">Difficulty</span>
+                            <span class="spec-value">★★★ Advanced</span>
+                        </div>
+                        <div class="spec">
+                            <span class="spec-label">Hardware</span>
+                            <span class="spec-value">Industrial Components</span>
+                        </div>
+                        <div class="spec">
+                            <span class="spec-label">Cost</span>
+                            <span class="spec-value cost-badge cost-high">$2,000-4,000</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="features">
+                            <span class="feature-tag">6DOF</span>
+                            <span class="feature-tag">Desktop Size</span>
+                            <span class="feature-tag">Industrial</span>
+                        </div>
+                        <div class="links">
+                            <a href="https://www.anninrobotics.com/" class="link-btn link-docs">Website</a>
+                            <a href="https://www.anninrobotics.com/downloads" class="link-btn link-demo">Software</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="robot-card">
+                <div class="card-image" style="background: linear-gradient(135deg, #f39c12, #e67e22);">
+                    🦾
+                    <div class="card-type-badge">Learning Arm</div>
+                </div>
+                <div class="card-content">
+                    <div class="card-title">Arctos Robot Arm</div>
+                    <div class="card-subtitle">Open & Closed Loop Versions</div>
+                    <div class="card-description">
+                        Two versions available: Open Loop and Closed Loop. Both provide rich learning 
+                        and building experience but differ in complexity and functionality.
+                    </div>
+                    <div class="card-specs">
+                        <div class="spec">
+                            <span class="spec-label">Language</span>
+                            <span class="spec-value">Arduino, C++</span>
+                        </div>
+                        <div class="spec">
+                            <span class="spec-label">Difficulty</span>
+                            <span class="spec-value">★★☆ Intermediate</span>
+                        </div>
+                        <div class="spec">
+                            <span class="spec-label">Hardware</span>
+                            <span class="spec-value">Arduino Platform</span>
+                        </div>
+                        <div class="spec">
+                            <span class="spec-label">Cost</span>
+                            <span class="spec-value cost-badge cost-medium">$500-1,500</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="features">
+                            <span class="feature-tag">Open/Closed Loop</span>
+                            <span class="feature-tag">Educational</span>
+                            <span class="feature-tag">Two Versions</span>
+                        </div>
+                        <div class="links">
+                            <a href="https://arctosrobotics.com/" class="link-btn link-docs">Website</a>
+                            <a href="https://www.youtube.com/watch?v=8DtwWGTlogU" class="link-btn link-demo">YouTube</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="robot-card">
+                <div class="card-image" style="background: linear-gradient(135deg, #9b59b6, #8e44ad);">
+                    🦴
+                    <div class="card-type-badge">Exoskeleton</div>
+                </div>
+                <div class="card-content">
+                    <div class="card-title">OpenExo</div>
+                    <div class="card-subtitle">Modular Exoskeleton System</div>
+                    <div class="card-description">
+                        Open-source modular exoskeleton designed to augment human function. 
+                        Published in Science Robotics with comprehensive documentation.
+                    </div>
+                    <div class="card-specs">
+                        <div class="spec">
+                            <span class="spec-label">Language</span>
+                            <span class="spec-value">Python, C++</span>
+                        </div>
+                        <div class="spec">
+                            <span class="spec-label">Difficulty</span>
+                            <span class="spec-value">★★★ Advanced</span>
+                        </div>
+                        <div class="spec">
+                            <span class="spec-label">Hardware</span>
+                            <span class="spec-value">Modular Components</span>
+                        </div>
+                        <div class="spec">
+                            <span class="spec-label">Cost</span>
+                            <span class="spec-value cost-badge cost-medium">$1,000-3,000</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="features">
+                            <span class="feature-tag">Modular</span>
+                            <span class="feature-tag">Human Augmentation</span>
+                            <span class="feature-tag">Research</span>
+                        </div>
+                        <div class="links">
+                            <a href="https://github.com/naubiomech/OpenExo" class="link-btn link-github">GitHub</a>
+                            <a href="https://www.science.org/doi/10.1126/scirobotics.adt1591" class="link-btn link-docs">Paper</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="robot-card">
+                <div class="card-image" style="background: linear-gradient(135deg, #2ecc71, #27ae60);">
+                    🦾
+                    <div class="card-type-badge">Educational Arm</div>
+                </div>
+                <div class="card-content">
+                    <div class="card-title">Pedro 2.0 Robot</div>
+                    <div class="card-subtitle">3D-Printable Educational Arm</div>
+                    <div class="card-description">
+                        A compact, 3D-printable, open-source robotic arm designed to democratize 
+                        robotics education. OSHWA certified open source hardware.
+                    </div>
+                    <div class="card-specs">
+                        <div class="spec">
+                            <span class="spec-label">Language</span>
+                            <span class="spec-value">Arduino, C++</span>
+                        </div>
+                        <div class="spec">
+                            <span class="spec-label">Difficulty</span>
+                            <span class="spec-value">★★☆ Intermediate</span>
+                        </div>
+                        <div class="spec">
+                            <span class="spec-label">Hardware</span>
+                            <span class="spec-value">3D Printed Parts</span>
+                        </div>
+                        <div class="spec">
+                            <span class="spec-label">Cost</span>
+                            <span class="spec-value cost-badge cost-low">$200-500</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="features">
+                            <span class="feature-tag">3D Printable</span>
+                            <span class="feature-tag">Compact</span>
+                            <span class="feature-tag">Educational</span>
+                        </div>
+                        <div class="links">
+                            <a href="https://github.com/almtzr/Pedro" class="link-btn link-github">GitHub</a>
+                            <a href="https://www.hackster.io/almtzr/pedro-robot-a-fully-open-source-robotic-arm-for-hands-eeb7dd" class="link-btn link-demo">Hackster</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="robot-card">
+                <div class="card-image" style="background: linear-gradient(135deg, #3498db, #2980b9);">
+                    🤖
+                    <div class="card-type-badge">Humanoid</div>
+                </div>
+                <div class="card-content">
+                    <div class="card-title">Reachy 2</div>
+                    <div class="card-subtitle">Friendly Humanoid Robot</div>
+                    <div class="card-description">
+                        Open-source humanoid robot designed for intuitive human-robot interaction. 
+                        Features expressive movement and 7-DoF arms with 3kg payload capacity.
+                    </div>
+                    <div class="card-specs">
+                        <div class="spec">
+                            <span class="spec-label">Language</span>
+                            <span class="spec-value">Python</span>
+                        </div>
+                        <div class="spec">
+                            <span class="spec-label">Difficulty</span>
+                            <span class="spec-value">★★★ Advanced</span>
+                        </div>
+                        <div class="spec">
+                            <span class="spec-label">Hardware</span>
+                            <span class="spec-value">Orbita Joints + LiDAR</span>
+                        </div>
+                        <div class="spec">
+                            <span class="spec-label">Cost</span>
+                            <span class="spec-value cost-badge cost-high">$15,000+</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="features">
+                            <span class="feature-tag">7-DoF Arms</span>
+                            <span class="feature-tag">3kg Payload</span>
+                            <span class="feature-tag">LiDAR Navigation</span>
+                        </div>
+                        <div class="links">
+                            <a href="https://github.com/pollen-robotics/reachy2-sdk" class="link-btn link-github">GitHub</a>
+                            <a href="https://www.youtube.com/watch?v=Er8SPJsIYr0" class="link-btn link-demo">YouTube</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="robot-card">
+                <div class="card-image" style="background: linear-gradient(135deg, #1abc9c, #16a085);">
+                    🦾
+                    <div class="card-type-badge">SCARA Arm</div>
+                </div>
+                <div class="card-content">
+                    <div class="card-title">SCARA Robot</div>
+                    <div class="card-subtitle">Arduino-Based SCARA Design</div>
+                    <div class="card-description">
+                        DIY SCARA robot built with Arduino and Processing. Perfect introduction to 
+                        industrial robot architectures with comprehensive build tutorial.
+                    </div>
+                    <div class="card-specs">
+                        <div class="spec">
+                            <span class="spec-label">Language</span>
+                            <span class="spec-value">Arduino, Processing</span>
+                        </div>
+                        <div class="spec">
+                            <span class="spec-label">Difficulty</span>
+                            <span class="spec-value">★★☆ Intermediate</span>
+                        </div>
+                        <div class="spec">
+                            <span class="spec-label">Hardware</span>
+                            <span class="spec-value">Arduino + Stepper Motors</span>
+                        </div>
+                        <div class="spec">
+                            <span class="spec-label">Cost</span>
+                            <span class="spec-value cost-badge cost-medium">$300-800</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="features">
+                            <span class="feature-tag">SCARA Design</span>
+                            <span class="feature-tag">Arduino Based</span>
+                            <span class="feature-tag">DIY Friendly</span>
+                        </div>
+                        <div class="links">
+                            <a href="https://howtomechatronics.com/projects/scara-robot-how-to-build-your-own-arduino-based-robot/" class="link-btn link-docs">Guide</a>
+                            <a href="https://youtu.be/1QHJksTrk8s?feature=shared" class="link-btn link-demo">YouTube</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showView(viewType) {
+            // Hide all views
+            document.getElementById('table-view').classList.remove('active');
+            document.getElementById('gallery-view').classList.remove('active');
+            
+            // Remove active class from all buttons
+            document.querySelectorAll('.toggle-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected view and activate button
+            if (viewType === 'table') {
+                document.getElementById('table-view').classList.add('active');
+                document.querySelector('[onclick="showView(\'table\')"]').classList.add('active');
+            } else if (viewType === 'gallery') {
+                document.getElementById('gallery-view').classList.add('active');
+                document.querySelector('[onclick="showView(\'gallery\')"]').classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
