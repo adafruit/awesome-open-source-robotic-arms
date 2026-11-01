@@ -31,6 +31,7 @@ Ordered by most recent first
 
 ## Guides
 
+* [SO-101 parts list and cost](https://robotusecases.com/guides/so-101-parts-list-cost) - every part in The Robot Studio's SO-101 BOM with US retail prices, for one follower arm or a leader-follower pair. Prices checked 10/30/2026: $131.69 for a follower arm, $254.48 for a pair.
 ## Community
 
 
